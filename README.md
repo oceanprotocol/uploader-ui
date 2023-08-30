@@ -39,8 +39,7 @@ npm run dev
 # to build the project and run it in dev mode.
 ```
 
-Run `npm run build` from the root folder to build the library. This creates `dist` folder which contains everything that
-would be published to npm.
+Run `npm run build` from the root folder to build the project.
 
 # if you encounter this error: Error: error:0308010C:digital envelope routines::unsupported
 Run `export NODE_OPTIONS=--openssl-legacy-provider` before building.
