@@ -1,6 +1,6 @@
 [![banner](https://raw.githubusercontent.com/oceanprotocol/art/master/github/repo-banner%402x.png)](https://oceanprotocol.com)
 
-<h1 align="center">Ocean DBS UI Library</h1>
+<h1 align="center">Demo Ocean DBS UI</h1>
 
 **Table of Contents**
 
@@ -14,7 +14,7 @@
 
 The project uses NextJS + TypeScript + CSS modules and will connect to Ocean remote components by default.
 
-This is an example Demo for DBS UI Library which uses the Ocean Decentralized Backend storage.
+This is an example Demo for [DBS UI Library](https://github.com/oceanprotocol/dbs-ui-lib) which uses the Ocean Decentralized Backend storage.
 
 Prerequisites:
 
