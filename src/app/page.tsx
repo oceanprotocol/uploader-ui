@@ -27,7 +27,7 @@ export default function Home() {
 
       <div className={styles.center}>
         <a
-          href="https://github.com/oceanprotocol/dbs-ui-lib"
+          href="https://github.com/oceanprotocol/demo-dbs-ui"
           className={styles.card}
           target="_blank"
           rel="noopener noreferrer"
