@@ -14,7 +14,7 @@
 
 The project uses NextJS + TypeScript + CSS modules and will connect to Ocean remote components by default.
 
-This is an example Demo for [DBS UI Library](https://github.com/oceanprotocol/dbs-ui-lib) which uses the Ocean Decentralized Backend storage.
+This is an example Demo for [Uploader UI Library](https://github.com/oceanprotocol/uploader-ui-lib) which uses the Ocean Decentralized Backend storage.
 
 Prerequisites:
 
@@ -48,26 +48,26 @@ Import and use the Uploader UI components in your app:
 
 ```bash
 import '@oceanprotocol/uploader-ui-lib/dist/index.es.css';
-const Uploader = dynamic(() => import('@oceanprotocol/uploader-ui-lib').then((module) => module.DBSUploader), { ssr: false });
+const Uploader = dynamic(() => import('@oceanprotocol/uploader-ui-lib').then((module) => module.Uploader), { ssr: false });
 
-<Uploader 
-   dbs_url={process.env.DBS_URL}
-   dbs_account={process.env.DBS_ACCOUNT}
-   infuraId={process.env.PUBLIC_INFURA_PROJECT_ID}
-   walletConnectProjectId={process.env.PUBLIC_WALLETCONNECT_PROJECT_ID}
-/>
+<Uploader
+   uploader_url={process.env.UPLOADER_URL || 'https://api.uploader.oceanprotocol.com/'}
+   uploader_account={process.env.UPLOADER_ACCOUNT || '0x5F8396D1BfDa5259Ee89196F892E4401BF3B596d'}
+   infuraId={process.env.INFURA_ID || ''}
+   walletConnectProjectId={process.env.WALLET_CONNECT_PROJECT_ID || ''}
+/> 
 ```
 
-To enable the functionality of the DBSUploader, the following setting variables need to be set:
+To enable the functionality of the Uploader, the following setting variables need to be set:
 
 | Variable                | Description                                           |
 |-------------------------|-------------------------------------------------------|
-| `dbs_url`               | URL for DBS service communication                    |
-| `dbs_account`           | Account info for DBS authentication                  |
+| `uploader_url`               | URL for Uploader service communication                    |
+| `uploader_account`           | Account info for Uploader authentication                  |
 | `infuraId`              | Project ID for Ethereum access via Infura            |
 | `walletConnectProjectId`| Project ID for WalletConnect integration             |
 
-These variables are needed to interact with the DBS service, provide authentication credentials, access the Ethereum network through Infura, and enable integration with WalletConnect. 
+These variables are needed to interact with the Uploader, provide authentication credentials, access the Ethereum network through Infura, and enable integration with WalletConnect. 
 
 ## 🛳 Production
 
