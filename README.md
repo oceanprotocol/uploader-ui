@@ -1,6 +1,6 @@
 [![banner](https://raw.githubusercontent.com/oceanprotocol/art/master/github/repo-banner%402x.png)](https://oceanprotocol.com)
 
-<h1 align="center">Demo Ocean DBS UI</h1>
+<h1 align="center">Demo Ocean Uploader UI (NextJS)</h1>
 
 **Table of Contents**
 
@@ -25,15 +25,13 @@ Prerequisites:
 To start local development:
 
 ```bash
-git clone git@github.com:oceanprotocol/demo-dbs-ui.git
-cd demo-dbs-ui
+git clone git@github.com:oceanprotocol/uploader-ui.git
+cd uploader-ui
 
 # when using nvm to manage Node.js versions
 nvm use 20
 
 npm install
-# in case of dependency errors, rather use:
-# npm install --legacy-peer-deps
 
 npm run dev
 # to build the project and run it in dev mode.
@@ -46,12 +44,13 @@ Run `export NODE_OPTIONS=--openssl-legacy-provider` before building.
 
 ## 🚀 Usage
 
-Import and use the DBS UI components in your app:
+Import and use the Uploader UI components in your app:
 
 ```bash
-import { DBSUploader } from '@oceanprotocol/dbs-ui-lib';
+import '@oceanprotocol/uploader-ui-lib/dist/index.es.css';
+const Uploader = dynamic(() => import('@oceanprotocol/uploader-ui-lib').then((module) => module.DBSUploader), { ssr: false });
 
-<DBSUploader 
+<Uploader 
    dbs_url={process.env.DBS_URL}
    dbs_account={process.env.DBS_ACCOUNT}
    infuraId={process.env.PUBLIC_INFURA_PROJECT_ID}
