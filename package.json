@@ -11,8 +11,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@oceanprotocol/dbs": "^0.0.2-alpha.25",
-    "@oceanprotocol/dbs-ui-lib": "^0.0.2",
+    "@oceanprotocol/uploader-ui-lib": "^0.1.5",
     "@tippyjs/react": "^4.2.6",
     "@types/node": "20.5.7",
     "@types/react": "18.2.21",
