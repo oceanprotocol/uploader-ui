@@ -19,12 +19,14 @@ export default function Home() {
         />
       </div>
 
-      <Uploader
-        uploader_url={process.env.UPLOADER_URL || 'https://api.uploader.oceanprotocol.com/'}
-        uploader_account={process.env.UPLOADER_ACCOUNT || '0x5F8396D1BfDa5259Ee89196F892E4401BF3B596d'}
-        infuraId={process.env.INFURA_ID || ''}
-        walletConnectProjectId={process.env.WALLET_CONNECT_PROJECT_ID || ''}
-      /> 
+      <div className={styles.center}>
+        <Uploader
+          uploader_url={process.env.UPLOADER_URL || 'https://api.uploader.oceanprotocol.com/'}
+          uploader_account={process.env.UPLOADER_ACCOUNT || '0x5F8396D1BfDa5259Ee89196F892E4401BF3B596d'}
+          infuraId={process.env.INFURA_ID || ''}
+          walletConnectProjectId={process.env.WALLET_CONNECT_PROJECT_ID || ''}
+        /> 
+      </div>
 
       <div className={styles.center}>
         <a
