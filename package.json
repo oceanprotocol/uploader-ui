@@ -1,5 +1,5 @@
 {
-  "name": "demo-next-dbs-ui",
+  "name": "demo-next-uploader-ui",
   "author": "Ocean Protocol Foundation <devops@oceanprotocol.com>",
   "license": "Apache-2.0",
   "version": "0.0.1",
@@ -11,7 +11,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@oceanprotocol/uploader-ui-lib": "^0.1.5",
+    "@oceanprotocol/uploader-ui-lib": "^0.1.6",
     "@tippyjs/react": "^4.2.6",
     "@types/node": "20.5.7",
     "@types/react": "18.2.21",

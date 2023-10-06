@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image'
 import styles from './page.module.css'
 import '@oceanprotocol/uploader-ui-lib/dist/index.es.css';
-const Uploader = dynamic(() => import('@oceanprotocol/uploader-ui-lib').then((module) => module.DBSUploader), { ssr: false });
+const Uploader = dynamic(() => import('@oceanprotocol/uploader-ui-lib').then((module) => module.Uploader), { ssr: false });
 
 export default function Home() {
   return (
@@ -20,15 +20,15 @@ export default function Home() {
       </div>
 
       <Uploader
-        dbs_url={process.env.DBS_URL || 'https://dbs.oceanprotocol.com'}
-        dbs_account={process.env.DBS_ACCOUNT || '0x5F8396D1BfDa5259Ee89196F892E4401BF3B596d'}
+        uploader_url={process.env.UPLOADER_URL || 'https://api.uploader.oceanprotocol.com/'}
+        uploader_account={process.env.UPLOADER_ACCOUNT || '0x5F8396D1BfDa5259Ee89196F892E4401BF3B596d'}
         infuraId={process.env.INFURA_ID || ''}
         walletConnectProjectId={process.env.WALLET_CONNECT_PROJECT_ID || ''}
       /> 
 
       <div className={styles.center}>
         <a
-          href="https://github.com/oceanprotocol/demo-dbs-ui"
+          href="https://github.com/oceanprotocol/uploader-ui"
           className={styles.card}
           target="_blank"
           rel="noopener noreferrer"

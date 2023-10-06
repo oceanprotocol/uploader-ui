@@ -1,6 +1,6 @@
 [![banner](https://raw.githubusercontent.com/oceanprotocol/art/master/github/repo-banner%402x.png)](https://oceanprotocol.com)
 
-<h1 align="center">Demo Ocean DBS UI</h1>
+<h1 align="center">Demo Ocean Uploader UI (NextJS)</h1>
 
 **Table of Contents**
 
@@ -14,7 +14,7 @@
 
 The project uses NextJS + TypeScript + CSS modules and will connect to Ocean remote components by default.
 
-This is an example Demo for [DBS UI Library](https://github.com/oceanprotocol/dbs-ui-lib) which uses the Ocean Decentralized Backend storage.
+This is an example Demo for [Uploader UI Library](https://github.com/oceanprotocol/uploader-ui-lib) which uses the Ocean Decentralized Backend storage.
 
 Prerequisites:
 
@@ -25,15 +25,13 @@ Prerequisites:
 To start local development:
 
 ```bash
-git clone git@github.com:oceanprotocol/demo-dbs-ui.git
-cd demo-dbs-ui
+git clone git@github.com:oceanprotocol/uploader-ui.git
+cd uploader-ui
 
 # when using nvm to manage Node.js versions
 nvm use 20
 
 npm install
-# in case of dependency errors, rather use:
-# npm install --legacy-peer-deps
 
 npm run dev
 # to build the project and run it in dev mode.
@@ -46,29 +44,78 @@ Run `export NODE_OPTIONS=--openssl-legacy-provider` before building.
 
 ## 🚀 Usage
 
-Import and use the DBS UI components in your app:
+Import and use the Uploader UI components in your app:
 
 ```bash
-import { DBSUploader } from '@oceanprotocol/dbs-ui-lib';
+import '@oceanprotocol/uploader-ui-lib/dist/index.es.css';
+const Uploader = dynamic(() => import('@oceanprotocol/uploader-ui-lib').then((module) => module.Uploader), { ssr: false });
 
-<DBSUploader 
-   dbs_url={process.env.DBS_URL}
-   dbs_account={process.env.DBS_ACCOUNT}
-   infuraId={process.env.PUBLIC_INFURA_PROJECT_ID}
-   walletConnectProjectId={process.env.PUBLIC_WALLETCONNECT_PROJECT_ID}
-/>
+<Uploader
+   uploader_url={process.env.UPLOADER_URL || 'https://api.uploader.oceanprotocol.com/'}
+   uploader_account={process.env.UPLOADER_ACCOUNT || '0x5F8396D1BfDa5259Ee89196F892E4401BF3B596d'}
+   infuraId={process.env.INFURA_ID || ''}
+   walletConnectProjectId={process.env.WALLET_CONNECT_PROJECT_ID || ''}
+/> 
 ```
 
-To enable the functionality of the DBSUploader, the following setting variables need to be set:
+To enable the functionality of the Uploader, the following setting variables need to be set:
 
 | Variable                | Description                                           |
 |-------------------------|-------------------------------------------------------|
-| `dbs_url`               | URL for DBS service communication                    |
-| `dbs_account`           | Account info for DBS authentication                  |
+| `uploader_url`               | URL for Uploader service communication                    |
+| `uploader_account`           | Account info for Uploader authentication                  |
 | `infuraId`              | Project ID for Ethereum access via Infura            |
 | `walletConnectProjectId`| Project ID for WalletConnect integration             |
 
-These variables are needed to interact with the DBS service, provide authentication credentials, access the Ethereum network through Infura, and enable integration with WalletConnect. 
+These variables are needed to interact with the Uploader, provide authentication credentials, access the Ethereum network through Infura, and enable integration with WalletConnect. 
+
+## NextJS Setup for Ocean Protocol Uploader UI Library
+
+To configure NextJS for the integration of Ocean's Uploader UI library, modify your `next.config.js` file to include these fallbacks:
+
+```javascript
+module.exports = {
+  webpack: (config) => {
+    config.resolve.fallback = { 
+      fs: false,
+      process: false,
+      net: false,
+      tls: false
+    };
+    return config;
+  },
+};
+```
+** add these fallbacks to avoid any issue related to webpack 5 Polyfills imcompatibility: https://github.com/webpack/changelog-v5#automatic-nodejs-polyfills-removed
+
+install dependencies:
+
+```javascript
+> npm install @oceanprotocol/uploader-ui-lib
+```
+
+Import the library's CSS into your project:
+```javascript
+> import '@oceanprotocol/uploader-ui-lib/dist/index.es.css';
+```
+
+Dynamically import the Uploader component and ensure it is not processed during server-side rendering (SSR) using the next/dynamic function:
+
+```javascript
+import dynamic from 'next/dynamic';
+...
+
+const Uploader = dynamic(() => import('@oceanprotocol/uploader-ui-lib').then((module) => module.Uploader), { ssr: false });
+```
+
+When incorporating the Uploader component into your application, make sure to set 'use client' on top in your app's component. This ensures that the component operates on the client side, bypassing SSR when rendering:
+
+```javascript
+'use client'
+import dynamic from 'next/dynamic';
+```
+
+This comprehensive setup ensures the proper integration and functioning of the Ocean Protocol's Uploader UI library within a NextJS application.
 
 ## 🛳 Production
 
