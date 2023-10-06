@@ -73,9 +73,8 @@
 }
 
 .center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 90%;
+  display: block;
   position: relative;
   padding: 4rem 0;
   padding-bottom: 0;
