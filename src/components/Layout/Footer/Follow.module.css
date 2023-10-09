@@ -1,0 +1,89 @@
+.follow {
+  display: grid;
+  gap: var(--spacer);
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  margin-top: calc(var(--spacer) * 1.5);
+  padding-top: calc(var(--spacer) * 1.5);
+  border-top: 1px solid var(--brand-grey-lighter);
+}
+
+.title {
+  composes: title from './index.module.css';
+}
+
+.social svg {
+  width: var(--font-size-h3);
+  height: var(--font-size-h3);
+}
+
+.social a:hover path {
+  fill: var(--brand-pink);
+}
+
+.socialsRow {
+  display: flex;
+  flex-direction: row;
+  gap: calc(var(--spacer) / 3);
+  flex-wrap: wrap;
+}
+
+.followRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.contact {
+  padding-top: calc(var(--spacer) * 0.2);
+  padding-left: calc(var(--spacer) * 0.4);
+  padding-bottom: calc(var(--spacer) * 0.2);
+  padding-right: calc(var(--spacer) * 0.4);
+  font-size: var(--font-size-mini);
+  line-height: calc(var(--line-height) * 1.2);
+}
+
+.newsletter form > div:last-child {
+  display: none;
+}
+
+.newsletter input,
+.newsletter button {
+  min-height: auto;
+  padding-top: calc(var(--spacer) / 4);
+  padding-bottom: calc(var(--spacer) / 4);
+  font-size: var(--font-size-small);
+}
+
+.newsletter input {
+  background: transparent;
+}
+
+.newsletter input:focus {
+  background: var(--brand-white);
+  border-color: var(--brand-grey-lighter);
+}
+
+.newsletter input::placeholder {
+  font-size: var(--font-size-small);
+}
+
+.newsletter button {
+  background: var(--brand-white);
+  border: 1px solid var(--brand-grey-lighter);
+  box-shadow: none;
+  color: var(--brand-grey);
+  font-size: var(--font-size-small);
+  padding-left: calc(var(--spacer) / 2);
+  padding-right: calc(var(--spacer) / 2);
+}
+
+@media (max-width: 500px) {
+  .followRow {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .contact {
+    margin-top: calc(var(--spacer) * 0.5);
+  }
+}

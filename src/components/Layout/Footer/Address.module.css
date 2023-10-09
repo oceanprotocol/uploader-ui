@@ -1,0 +1,73 @@
+.address {
+  color: var(--brand-grey-light);
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: calc(var(--spacer) * 1.5);
+  padding-top: calc(var(--spacer) * 1.5);
+  border-top: 1px solid var(--brand-grey-lighter);
+}
+
+.logo {
+  display: block;
+  width: fit-content;
+  margin-right: var(--spacer);
+}
+
+.copyright {
+  margin: 0;
+}
+
+.copyright,
+.copyright small {
+  font-size: var(--font-size-mini);
+}
+
+.copyright p:last-child {
+  margin-bottom: 0;
+}
+
+.copyright a,
+.copyright button {
+  color: inherit;
+  border-bottom: 1px dotted var(--brand-grey-light);
+  font-size: var(--font-size-mini);
+}
+
+
+.addressBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+@media screen and (max-width: 700px) {
+  .address {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-bottom: calc(var(--spacer) * 1.5);
+  }
+
+  .addressBox {
+    flex-direction: column;
+  }
+
+  .logo {
+    margin-bottom: calc(var(--spacer) * 1.5);
+    margin-right: 0;
+  }
+
+  .row {
+    justify-content: flex-start;
+  }
+}

@@ -34,6 +34,73 @@
     #00000080
   );
 
+  --brand-white: #ffffff;
+  --brand-black: #141414;
+  --brand-pink: #ff4092;
+  --brand-purple: #7b1173;
+  --brand-purple-light: #bd2881;
+  --brand-violet: #e000cf;
+  --brand-raspberry-pink: #fe4796;
+  --brand-magenta: #d53288;
+  --brand-magenta-heavy: #b82781;
+
+  --brand-grey-dark: #303030;
+  --brand-grey: #41474e;
+  --brand-grey-light: #8b98a9;
+  --brand-grey-lighter: #e2e2e2;
+  --brand-grey-very-light: #c9c9c9;
+  --brand-grey-dimmed: #f7f7f7;
+  --brand-great-light-grey: #eeeeee;
+  --white-smoke: #f5f5f5;
+  --light-grey: #dddddd;
+  --brand-whitesmoke: #f2f2f2;
+
+  --brand-gradient: linear-gradient(to right bottom, #7b1173, #ff4092);
+  --brand-secondary-gradient: linear-gradient(
+    to right bottom,
+    #21401f,
+    #5fb359
+  );
+
+  --brand-alert-green: #5fb359;
+  --brand-alert-red: #d80606;
+  --brand-alert-orange: #b35f36;
+  --brand-alert-yellow: #eac146;
+
+  --font-family-base: 'Sharp Sans', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-family-title: 'Sharp Sans Display', -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-family-monospace: 'Fira Code', 'Fira Mono', Menlo, Monaco, Consolas,
+    'Courier New', monospace;
+
+  --font-size-root: 16px;
+  --font-size-base: 1rem;
+  --font-size-large: 1.2rem;
+  --font-size-small: 0.85rem;
+  --font-size-mini: 0.65rem;
+  --font-size-text: 1rem;
+  --font-size-label: 1rem;
+  --font-size-title: 1.4rem;
+  --font-size-extra-large: 5rem;
+  --font-size-h1: 3rem;
+  --font-size-h2: 2.5rem;
+  --font-size-h3: 1.7rem;
+  --font-size-h4: 1.3rem;
+  --font-size-h5: 1.1rem;
+  --font-weight-base-slim: 400;
+  --font-weight-base: 500;
+  --font-weight-bold: 600;
+  --line-height: 1.6;
+
+  --spacer: 2rem;
+
+  --break-point--small: 640px;
+  --break-point--medium: 860px;
+  --break-point--large: 1140px;
+  --break-point--huge: 1400px;
+  --border-radius: 0.2rem;
+
   --callout-rgb: 238, 240, 241;
   --callout-border-rgb: 172, 175, 176;
   --card-rgb: 180, 185, 188;
