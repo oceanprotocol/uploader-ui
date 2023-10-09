@@ -1,5 +1,5 @@
 import React from 'react';
-import { SocialIconLink } from '../../atoms/SocialIcon';
+import { SocialIconLink } from '../../../atoms/SocialIcon';
 import styles from './Follow.module.css';
 import useSiteMetadata from './hooks/useSiteMetadata';
 

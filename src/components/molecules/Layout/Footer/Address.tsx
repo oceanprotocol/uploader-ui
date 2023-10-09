@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo from '../../atoms/Logo';
+import Logo from '../../../atoms/Logo';
 import styles from './Address.module.css';
 import Link from 'next/link';
 import useSiteMetadata from './hooks/useSiteMetadata';

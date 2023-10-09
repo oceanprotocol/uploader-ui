@@ -1,9 +1,8 @@
 .footer {
-  margin-top: calc(var(--spacer) * 3);
-  padding: calc(var(--spacer) * 2) 0;
+  padding: calc(var(--spacer)) 0;
   font-size: var(--font-size-small);
   position: relative;
-  background: url('../../../../node_modules/@oceanprotocol/art/creatures/mantaray/mantaray-grid.svg')
+  background: url('../../../../../node_modules/@oceanprotocol/art/creatures/mantaray/mantaray-grid.svg')
     no-repeat right top;
   background-size: 200px;
   width: 100%;

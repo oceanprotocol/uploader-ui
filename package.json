@@ -25,6 +25,7 @@
     "eslint-config-next": "13.4.19",
     "https-browserify": "^1.0.0",
     "lokijs": "^1.5.12",
+    "magic-sdk": "^20.1.1",
     "next": "13.4.19",
     "pino-pretty": "^10.2.0",
     "react": "18.2.0",
@@ -36,6 +37,7 @@
     "remark-html": "^15.0.2",
     "stream-http": "^3.2.0",
     "typescript": "5.2.2",
+    "web3": "^4.1.2",
     "worker-thread": "^1.1.0"
   }
 }

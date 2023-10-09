@@ -1,5 +1,5 @@
 import React from 'react';
-import Container from '../../atoms/Container';
+import Container from '../../../atoms/Container';
 import Address from './Address';
 // import Waves from '../../atoms/Waves';
 import styles from './index.module.css';
