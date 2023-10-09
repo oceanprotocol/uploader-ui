@@ -5,16 +5,16 @@ import DisconnectButton from './DisconnectButton';
 import ShowUIButton from './ShowUIButton';
 
 export default function WalletInteraction() {
-  const { user } = useWeb3();
+  const { isUserConnected } = useWeb3();
 
   return (
     <>
-      {!user ? (
+      {!isUserConnected ? (
         <ConnectButton />
       ) : (
         <div className={style.root}>
-          <DisconnectButton />
           <ShowUIButton />
+          <DisconnectButton />
         </div>
       )}
     </>

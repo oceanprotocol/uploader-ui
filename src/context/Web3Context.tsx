@@ -1,72 +1,128 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import Web3 from 'web3';
-import { magic } from '../utils/magic';
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
+import { ethers } from 'ethers';
+import magic from '../utils/magic';
 
 // Define the structure of the Web3 context state
 type Web3ContextType = {
-  web3: Web3 | null;
-  user: string | null;
-  initializeWeb3: () => void;
+  isUserConnected: boolean;
+  magicLinkProvider: ethers.providers.Web3Provider | undefined;
+  onConnect: () => Promise<void>;
+  onDisconnect: () => Promise<void>;
+  manageWallet: () => Promise<void>;
+  walletAddress: string;
 };
 
 // Create the context with default values
-const Web3Context = createContext<Web3ContextType>({
-  web3: null,
-  user: null,
-  initializeWeb3: () => {},
-});
+const Web3Context = createContext<Web3ContextType>({} as Web3ContextType);
 
 // Custom hook to use the Web3 context
 export const useWeb3 = () => useContext(Web3Context);
 
 // Provider component to wrap around components that need access to the context
 export const Web3Provider = ({ children }: { children: React.ReactNode }) => {
-  // State variable to hold an instance of Web3
-  const [web3, setWeb3] = useState<Web3 | null>(null);
-  // Initialize user state to hold user's account information.
-  const [user, setUser] = useState<string | null>(null);
+  const [magicLinkProvider, setMagicLinkProvider] = useState();
+  const [isUserConnected, setIsUserConnected] = useState(false);
+  console.log(
+    '🚀 ~ file: Web3Context.tsx:32 ~ Web3Provider ~ isUserConnected:',
+    isUserConnected
+  );
+  const [walletAddress, setWalletAddress] = useState('');
 
-  // Initialize Web3
-  const initializeWeb3 = async () => {
-    // Get the provider from the Magic instance
-    // @ts-ignore
-    const provider = await magic.wallet.getProvider();
+  const web3Provider = useMemo(() => {
+    if (!isUserConnected) {
+      return;
+    }
 
-    // Create a new instance of Web3 with the provider
-    const web3 = new Web3(provider);
+    let provider;
+    provider = magicLinkProvider;
 
-    // Save the instance to state
-    setWeb3(web3);
-  };
+    return provider ? new ethers.providers.Web3Provider(provider) : undefined;
+  }, [isUserConnected, magicLinkProvider]);
 
-  // Function to retrieve and set user's account.
-  const fetchUserAccount = async () => {
-    // Use Web3 to get user's accounts.
-    const accounts = await web3?.eth.getAccounts();
-
-    // Update the user state with the first account (if available), otherwise set to null.
-    setUser(accounts ? accounts[0] : null);
-  };
-
-  // Effect to initialize Web3 when the component mounts
-  useEffect(() => {
-    initializeWeb3();
+  const onConnect = useCallback(async () => {
+    try {
+      await magic.wallet.connectWithUI();
+      const provider = await magic.wallet.getProvider();
+      setMagicLinkProvider(provider);
+      setIsUserConnected(true);
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
-  // Run fetchUserAccount function whenever the web3 instance changes.
-  useEffect(() => {
-    fetchUserAccount();
-  }, [web3]);
+  const onDisconnect = useCallback(async () => {
+    try {
+      await magic.user.logout();
+      setMagicLinkProvider(undefined);
+      setIsUserConnected(false);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
 
-  return (
-    <Web3Context.Provider
-      value={{
-        web3,
-        user,
-        initializeWeb3,
-      }}
-    >
-      {children}
-    </Web3Context.Provider>
+  const manageWallet = useCallback(async () => {
+    try {
+      await magic.wallet.showUI();
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  const getAccountAddress = useCallback(async () => {
+    const defaultValue = '';
+    if (!web3Provider) {
+      return defaultValue;
+    }
+
+    try {
+      return (await web3Provider.getSigner()).getAddress();
+    } catch (ex) {
+      return defaultValue;
+    }
+  }, [web3Provider]);
+
+  const init = useCallback(async () => {
+    const [isLoggedIn, providerResult] = await Promise.all([
+      magic.user.isLoggedIn(),
+      magic.wallet.getProvider(),
+    ]);
+    setIsUserConnected(isLoggedIn);
+    setMagicLinkProvider(providerResult);
+
+    getAccountAddress().then((address: string) => {
+      setWalletAddress(address);
+    });
+  }, [getAccountAddress]);
+
+  useEffect(() => {
+    init();
+  }, [init]);
+
+  const value: Web3ContextType = useMemo(
+    () => ({
+      isUserConnected,
+      magicLinkProvider,
+      onConnect,
+      onDisconnect,
+      manageWallet,
+      walletAddress,
+    }),
+    [
+      isUserConnected,
+      magicLinkProvider,
+      onConnect,
+      onDisconnect,
+      manageWallet,
+      walletAddress,
+    ]
   );
+
+  return <Web3Context.Provider value={value}>{children}</Web3Context.Provider>;
 };
