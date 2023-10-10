@@ -2,9 +2,6 @@
   padding: calc(var(--spacer)) 0;
   font-size: var(--font-size-small);
   position: relative;
-  background: url('../../../../../node_modules/@oceanprotocol/art/creatures/mantaray/mantaray-grid.svg')
-    no-repeat right top;
-  background-size: 200px;
   width: 100%;
 }
 
@@ -12,14 +9,25 @@
   position: absolute;
   background: url('../../../../../node_modules/@oceanprotocol/art/creatures/dolphin/dolphin-grid.svg')
     no-repeat right top;
-    background-size: 300px;
-    width: 400px;
-    height: 300px;
-    right: -120px;
-    top: 81px;
-    filter: opacity(0.3);
-    -webkit-transform: scaleX(-1);
-    transform: scaleX(-1);
+  background-size: 300px;
+  width: 400px;
+  height: 300px;
+  right: -120px;
+  top: -140px;
+  filter: opacity(0.3);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.mantaray {
+  position: absolute;
+  background: url('../../../../../node_modules/@oceanprotocol/art/creatures/mantaray/mantaray-grid.svg')
+    no-repeat right top;
+  background-size: 300px;
+  width: 400px;
+  height: 300px;
+  left: -80px;
+  top: -150px;
 }
 
 @media (min-width: 40rem) {
@@ -63,13 +71,4 @@
   color: var(--brand-grey-light);
   margin-bottom: calc(var(--spacer) / 2);
   text-transform: uppercase;
-}
-
-.waves {
-  top: -300px;
-}
-
-.waves svg {
-  top: 0;
-  bottom: auto;
 }

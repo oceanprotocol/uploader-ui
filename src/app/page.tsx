@@ -6,7 +6,6 @@ import { DBSUploader } from '@oceanprotocol/dbs-ui-lib';
 import '@oceanprotocol/dbs-ui-lib/dist/index.esm.css';
 import Layout from '../components/molecules/Layout';
 import config from '../../config';
-import Waves from '../components/atoms/Waves';
 
 export default function Home() {
   return (
@@ -23,7 +22,6 @@ export default function Home() {
           />
         </div>
       </div>
-      <Waves />
     </Layout>
   );
 }
