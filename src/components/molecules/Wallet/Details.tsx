@@ -61,7 +61,10 @@ export default function Details(): ReactElement {
                   alt="metamask logog"
                 />
               )}
-              {walletConnectionType?.walletType}
+              {walletConnectionType?.walletType === 'metamask' && 'MetaMask'}
+              {walletConnectionType?.walletType === 'magic' && 'Magic'}
+              {walletConnectionType?.walletType === 'coinbase_wallet' &&
+                'Coinbase'}
             </span>
           </div>
           <div className={styles.row}>

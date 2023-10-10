@@ -29,6 +29,7 @@
   text-align: left;
   font-weight: var(--font-weight-base);
   font-size: var(--font-size-small);
+  color: var(--brand-grey-light);
   display: inline-block;
   margin-right: 0.4rem;
 }

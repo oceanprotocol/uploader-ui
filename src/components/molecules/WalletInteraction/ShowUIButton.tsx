@@ -12,7 +12,7 @@ const ShowUIButton = ({ classNames }: { classNames?: string }) => {
       style="ghost"
       onClick={manageWallet}
     >
-      Show UI
+      Wallet Details
     </Button>
   ) : null;
 };
