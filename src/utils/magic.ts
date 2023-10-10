@@ -6,7 +6,7 @@ const customNodeOptions = {
   chainId: config.chainId,
 };
 
-const magic = new Magic(process.env.NEXT_PUBLIC_MAGIC_API_KEY || '', {
+const magic = new Magic(config.magicApiKey, {
   network: customNodeOptions,
 });
 
