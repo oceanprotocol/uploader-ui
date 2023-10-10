@@ -39,6 +39,7 @@ export default function Home() {
               priority
             />
           </div>
+          <br />
 
           <ConnectKitButton />
 
