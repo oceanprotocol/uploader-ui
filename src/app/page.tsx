@@ -11,16 +11,16 @@ import { WagmiConfig, createConfig } from 'wagmi'
 import { polygon } from 'wagmi/chains'
 import styles from './page.module.css'
 import '@oceanprotocol/uploader-ui-lib/dist/index.es.css';
-const Uploader = dynamic(() => import('@oceanprotocol/uploader-ui-lib').then((module) => module.Uploader), { ssr: false });
+const UploaderConnection = dynamic(() => import('@oceanprotocol/uploader-ui-lib').then((module) => module.UploaderConnection), { ssr: false });
 
 export default function Home() {
 
   const wagmiConfig = createConfig(
     getDefaultConfig({
       appName: 'Ocean Uploader UI',
-      infuraId: 'Your infura ID',
+      infuraId: process.env.INFURA_ID || '',
       chains: [polygon],
-      walletConnectProjectId: 'Your wallet connect project ID'
+      walletConnectProjectId: process.env.WALLET_CONNECT_PROJECT_ID || ''
     })
   )
 
@@ -43,11 +43,9 @@ export default function Home() {
           <ConnectKitButton />
 
           <div className={styles.center}>
-            <Uploader
+            <UploaderConnection
               uploader_url={process.env.UPLOADER_URL || 'https://api.uploader.oceanprotocol.com/'}
               uploader_account={process.env.UPLOADER_ACCOUNT || '0x5F8396D1BfDa5259Ee89196F892E4401BF3B596d'}
-              infuraId={process.env.INFURA_ID || ''}
-              walletConnectProjectId={process.env.WALLET_CONNECT_PROJECT_ID || ''}
             /> 
           </div>
 
