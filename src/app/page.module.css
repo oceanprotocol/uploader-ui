@@ -1,3 +1,38 @@
+.root {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.uploader {
+  max-width: var(--break-point--large);
+  width: fit-content;
+  height: fit-content;
+  margin: 0 auto;
+}
+
+.whale {
+  background: url('../../node_modules/@oceanprotocol/art/creatures/whale/whale-grid.svg')
+    no-repeat right top;
+  background-size: 400px;
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  right: -40px;
+  top: 0;
+}
+
+.squid {
+  background: url('../../node_modules/@oceanprotocol/art/creatures/squid/squid-grid.svg')
+    no-repeat right top;
+  background-size: 400px;
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
 .main {
   display: flex;
   flex-direction: column;

@@ -8,11 +8,11 @@ import Follow from './Follow';
 export default function Footer() {
   return (
     <footer className={styles.footer}>
+      <div className={styles.dolphin} />
       <Container className={styles.flexColumn}>
         <Follow />
         <Address />
       </Container>
-      {/* <Waves className={styles.waves} /> */}
     </footer>
   );
 }

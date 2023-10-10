@@ -7,7 +7,11 @@ import React, {
   useState,
 } from 'react';
 import { ethers } from 'ethers';
+import BigNumber from 'bignumber.js';
+import { WalletInfo } from 'magic-sdk';
+
 import magic from '../utils/magic';
+import useWalletBalance from '../hooks/useWalletBalance';
 
 // Define the structure of the Web3 context state
 type Web3ContextType = {
@@ -17,6 +21,13 @@ type Web3ContextType = {
   onDisconnect: () => Promise<void>;
   manageWallet: () => Promise<void>;
   walletAddress: string;
+  walletConnectionType: WalletInfo | undefined;
+  networkTokenBalance: BigNumber;
+  oceanTokenBalance: BigNumber;
+  networkTokenBalanceFormatted: string;
+  oceanTokenBalanceFormatted: string;
+  loadNetworkTokenBalance: () => Promise<void>;
+  loadOceanTokenBalance: () => Promise<void>;
 };
 
 // Create the context with default values
@@ -29,11 +40,9 @@ export const useWeb3 = () => useContext(Web3Context);
 export const Web3Provider = ({ children }: { children: React.ReactNode }) => {
   const [magicLinkProvider, setMagicLinkProvider] = useState();
   const [isUserConnected, setIsUserConnected] = useState(false);
-  console.log(
-    '🚀 ~ file: Web3Context.tsx:32 ~ Web3Provider ~ isUserConnected:',
-    isUserConnected
-  );
   const [walletAddress, setWalletAddress] = useState('');
+  const [walletConnectionType, setWalletConnectionType] =
+    useState<WalletInfo>();
 
   const web3Provider = useMemo(() => {
     if (!isUserConnected) {
@@ -46,13 +55,29 @@ export const Web3Provider = ({ children }: { children: React.ReactNode }) => {
     return provider ? new ethers.providers.Web3Provider(provider) : undefined;
   }, [isUserConnected, magicLinkProvider]);
 
+  const {
+    networkTokenBalance,
+    oceanTokenBalance,
+
+    networkTokenBalanceFormatted,
+    oceanTokenBalanceFormatted,
+
+    loadNetworkTokenBalance,
+    loadOceanTokenBalance,
+  } = useWalletBalance({ provider: web3Provider });
+
   const onConnect = useCallback(async () => {
     try {
       await magic.wallet.connectWithUI();
       const provider = await magic.wallet.getProvider();
       setMagicLinkProvider(provider);
+      const walletInfo = await magic.wallet.getInfo();
+      setWalletConnectionType(walletInfo);
       setIsUserConnected(true);
     } catch (error) {
+      setIsUserConnected(false);
+      setMagicLinkProvider(undefined);
+      setWalletConnectionType(undefined);
       console.log(error);
     }
   }, []);
@@ -62,6 +87,7 @@ export const Web3Provider = ({ children }: { children: React.ReactNode }) => {
       await magic.user.logout();
       setMagicLinkProvider(undefined);
       setIsUserConnected(false);
+      setWalletConnectionType(undefined);
     } catch (error) {
       console.log(error);
     }
@@ -89,12 +115,14 @@ export const Web3Provider = ({ children }: { children: React.ReactNode }) => {
   }, [web3Provider]);
 
   const init = useCallback(async () => {
-    const [isLoggedIn, providerResult] = await Promise.all([
+    const [isLoggedIn, providerResult, connectionType] = await Promise.all([
       magic.user.isLoggedIn(),
       magic.wallet.getProvider(),
+      magic.wallet.getInfo(),
     ]);
     setIsUserConnected(isLoggedIn);
     setMagicLinkProvider(providerResult);
+    setWalletConnectionType(connectionType);
 
     getAccountAddress().then((address: string) => {
       setWalletAddress(address);
@@ -113,6 +141,13 @@ export const Web3Provider = ({ children }: { children: React.ReactNode }) => {
       onDisconnect,
       manageWallet,
       walletAddress,
+      walletConnectionType,
+      networkTokenBalance,
+      oceanTokenBalance,
+      networkTokenBalanceFormatted,
+      oceanTokenBalanceFormatted,
+      loadNetworkTokenBalance,
+      loadOceanTokenBalance,
     }),
     [
       isUserConnected,
@@ -121,6 +156,13 @@ export const Web3Provider = ({ children }: { children: React.ReactNode }) => {
       onDisconnect,
       manageWallet,
       walletAddress,
+      walletConnectionType,
+      networkTokenBalance,
+      oceanTokenBalance,
+      networkTokenBalanceFormatted,
+      oceanTokenBalanceFormatted,
+      loadNetworkTokenBalance,
+      loadOceanTokenBalance,
     ]
   );
 

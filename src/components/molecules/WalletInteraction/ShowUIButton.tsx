@@ -1,12 +1,17 @@
+import cs from 'classnames';
 import styles from './style.module.css';
 import Button from '../../atoms/Button';
 import { useWeb3 } from '../../../context/Web3Context';
 
-const ShowUIButton = () => {
+const ShowUIButton = ({ classNames }: { classNames?: string }) => {
   const { isUserConnected, manageWallet } = useWeb3();
 
   return isUserConnected ? (
-    <Button className={styles.button} style="ghost" onClick={manageWallet}>
+    <Button
+      className={cs(styles.button, `${classNames}`)}
+      style="ghost"
+      onClick={manageWallet}
+    >
       Show UI
     </Button>
   ) : null;

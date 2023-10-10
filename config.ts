@@ -7,6 +7,10 @@ export type ConfigType = {
   githubRepo: string;
   chainId: number;
   rpcUrl: string;
+  oceanNetwork: {
+    contract: string;
+    networkDecimals: number;
+  };
 };
 
 const config: ConfigType = {
@@ -23,6 +27,12 @@ const config: ConfigType = {
   chainId: parseInt(process.env.NEXT_PUBLIC_CHAIN_ID || '', 10) || 80001,
   rpcUrl:
     process.env.NEXT_PUBLIC_RPC_URL || 'https://rpc-mumbai.maticvigil.com/',
+  oceanNetwork: {
+    contract:
+      process.env.EXPO_PUBLIC_OCEAN_CONTRACT ||
+      '0xd8992Ed72C445c35Cb4A2be468568Ed1079357c8',
+    networkDecimals: 18,
+  },
 };
 
 export default config;

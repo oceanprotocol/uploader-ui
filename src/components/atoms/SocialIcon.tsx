@@ -1,4 +1,7 @@
 import React from 'react';
+import Image from 'next/image';
+
+import style from './SocialIcon.module.css';
 
 import ButtonTelegram from '../../assets/telegram.svg';
 import ButtonTwitter from '../../assets/twitter.svg';
@@ -13,7 +16,6 @@ import ButtonOcean from '../../assets/oceanSocial.svg';
 import ButtonPodcast from '../../assets/podcast.svg';
 import ButtonWebsite from '../../assets/website.svg';
 import ButtonInstagram from '../../assets/instagram.svg';
-import Image from 'next/image';
 
 const styles = {
   display: 'inline-block',
@@ -172,7 +174,13 @@ export interface SocialIconProps {
 
 export function SocialIconLink({ url, icon, title }: SocialIconProps) {
   return (
-    <a href={url} title={title} rel="noopener noreferrer" target="_blank">
+    <a
+      href={url}
+      title={title}
+      className={style.icon}
+      rel="noopener noreferrer"
+      target="_blank"
+    >
       <SocialIcon icon={icon} />
     </a>
   );

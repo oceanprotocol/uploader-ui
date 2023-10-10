@@ -2,8 +2,8 @@ import Link from 'next/link';
 
 import style from './Header.module.css';
 import Logo from '../../../atoms/Logo';
-import Button from '../../../atoms/Button';
 import WalletInteraction from '../../WalletInteraction';
+import Wallet from '../../Wallet';
 
 export default function Header() {
   return (
@@ -12,7 +12,8 @@ export default function Header() {
         <Link href="/" className={style.logo} title="Back to Homepage">
           <Logo />
         </Link>
-        <WalletInteraction />
+        {/* <WalletInteraction /> */}
+        <Wallet />
       </div>
     </div>
   );

@@ -32,6 +32,22 @@
   justify-content: space-between;
 }
 
+.githubRepo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.icon {
+  transition: .2s ease-out;
+  filter: invert(0%) sepia(5%) saturate(0%) hue-rotate(349deg) brightness(88%) contrast(101%);
+}
+
+.icon:hover {
+  cursor: pointer;
+  filter: invert(40%) sepia(56%) saturate(2662%) hue-rotate(310deg) brightness(100%) contrast(105%);
+}
+
 .contact {
   padding-top: calc(var(--spacer) * 0.2);
   padding-left: calc(var(--spacer) * 0.4);

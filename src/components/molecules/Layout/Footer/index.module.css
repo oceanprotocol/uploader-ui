@@ -8,6 +8,20 @@
   width: 100%;
 }
 
+.dolphin {
+  position: absolute;
+  background: url('../../../../../node_modules/@oceanprotocol/art/creatures/dolphin/dolphin-grid.svg')
+    no-repeat right top;
+    background-size: 300px;
+    width: 400px;
+    height: 300px;
+    right: -120px;
+    top: 81px;
+    filter: opacity(0.3);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
 @media (min-width: 40rem) {
   .footer {
     background-size: 250px;
