@@ -1,4 +1,5 @@
 'use client'
+import dynamic from 'next/dynamic';
 import Image from 'next/image'
 import styles from './page.module.css'
 import { DBSUploader } from '@oceanprotocol/dbs-ui-lib';
