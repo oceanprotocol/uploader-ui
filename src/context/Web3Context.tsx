@@ -67,6 +67,7 @@ export const Web3Provider = ({ children }: { children: React.ReactNode }) => {
   } = useWalletBalance({ provider: web3Provider });
 
   const onConnect = useCallback(async () => {
+    if (!magic) return;
     try {
       await magic.wallet.connectWithUI();
       const provider = await magic.wallet.getProvider();
@@ -83,6 +84,7 @@ export const Web3Provider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const onDisconnect = useCallback(async () => {
+    if (!magic) return;
     try {
       await magic.user.logout();
       setMagicLinkProvider(undefined);
@@ -94,6 +96,7 @@ export const Web3Provider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const manageWallet = useCallback(async () => {
+    if (!magic) return;
     try {
       await magic.wallet.showUI();
     } catch (error) {
@@ -115,6 +118,7 @@ export const Web3Provider = ({ children }: { children: React.ReactNode }) => {
   }, [web3Provider]);
 
   const init = useCallback(async () => {
+    if (!magic) return;
     const [isLoggedIn, providerResult, connectionType] = await Promise.all([
       magic.user.isLoggedIn(),
       magic.wallet.getProvider(),

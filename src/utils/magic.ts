@@ -6,8 +6,10 @@ const customNodeOptions = {
   chainId: config.chainId,
 };
 
-const magic = new Magic(config.magicApiKey, {
-  network: customNodeOptions,
-});
+const magic =
+  typeof window !== 'undefined' &&
+  new Magic(config.magicApiKey, {
+    network: customNodeOptions,
+  });
 
 export default magic;
