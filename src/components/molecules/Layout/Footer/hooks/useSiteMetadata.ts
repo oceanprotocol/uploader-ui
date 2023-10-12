@@ -17,36 +17,16 @@ export default function useSiteMetadata() {
   const socials = useMemo(() => {
     return [
       {
-        name: 'Blog',
-        url: 'https://blog.oceanprotocol.com',
+        name: 'Website',
+        url: 'https://oceanprotocol.com/',
       },
       {
-        name: 'Twitter',
-        url: 'https://twitter.com/oceanprotocol',
+        name: 'Docs',
+        url: 'https://github.com/oceanprotocol/uploader.js#ocean-uploaderjs:~:text=README.md-,Ocean%20Uploader.js,-This%20is%20a',
       },
       {
         name: 'Discord',
         url: 'https://discord.gg/TnXjkR5',
-      },
-      {
-        name: 'GitHub',
-        url: 'https://github.com/oceanprotocol',
-      },
-      {
-        name: 'YouTube',
-        url: 'https://www.youtube.com/channel/UCH8TXwmWWAE9TZO0yTBHB3A',
-      },
-      {
-        name: 'Telegram',
-        url: 'https://t.me/OceanProtocol_Community',
-      },
-      {
-        name: 'Meetup',
-        url: 'https://www.meetup.com/Ocean_Protocol_Berlin',
-      },
-      {
-        name: 'Instagram',
-        url: 'https://www.instagram.com/oceanprotocol_/',
       },
     ];
   }, []);
