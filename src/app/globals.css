@@ -167,6 +167,22 @@ a {
   text-decoration: none;
 }
 
+/* PATCH for issue #90: https://github.com/oceanprotocol/uploader-ui-lib/issues/90 */
+/* remove once fixed */
+div[class^="NetworkItem-module_radio"] input[type="radio"] {
+  display: inline-block;
+  height: 18px;
+  margin-top: -2px;
+  min-height: 0;
+  padding: 0;
+  position: relative;
+  vertical-align: middle;
+  width: 18px;
+  margin-right: calc(var(--spacer)/3);
+  margin-top: 0;
+  vertical-align: baseline;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
