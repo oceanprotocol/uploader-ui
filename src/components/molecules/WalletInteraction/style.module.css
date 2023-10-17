@@ -1,0 +1,16 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: calc(var(--spacer))
+}
+
+.button {
+  color: var(--brand-pink);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: calc(var(--spacer) / 3) calc(var(--spacer) / 2);
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-small);
+}

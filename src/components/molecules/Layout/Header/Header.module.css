@@ -1,0 +1,17 @@
+.root {
+  width: 100%;
+  max-width: var(--break-point--large);
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: calc(var(--spacer) / 2);
+  padding-bottom: calc(var(--spacer) / 2);
+}
+
+.logo svg {
+  min-width: 4rem;
+  margin-left: -0.5rem;
+}
