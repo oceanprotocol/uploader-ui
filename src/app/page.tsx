@@ -5,11 +5,16 @@ import {
   getDefaultConfig
 } from 'connectkit'
 
+import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
+import { InjectedConnector } from 'wagmi/connectors/injected'
+import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
+import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
+
 import { WagmiConfig, createConfig, configureChains } from 'wagmi'
 import { polygon } from 'wagmi/chains'
 import styles from './page.module.css'
 import Layout from '../components/molecules/Layout';
-import { DedicatedWalletConnector } from '@magiclabs/wagmi-connector';
+import { DedicatedWalletConnector, UniversalWalletConnector } from '@magiclabs/wagmi-connector';
 import { publicProvider } from "wagmi/providers/public";
 import '@oceanprotocol/uploader-ui-lib/dist/index.es.css';
 const UploaderConnection = dynamic(() => import('@oceanprotocol/uploader-ui-lib').then((module) => module.UploaderConnection), { ssr: false });
@@ -29,18 +34,48 @@ export default function Home() {
       publicClient,
       webSocketPublicClient,
       connectors: [
+        new MetaMaskConnector({ chains }),
+        new CoinbaseWalletConnector({
+          chains,
+          options: {
+            appName: 'Ocean Uploader UI'
+          },
+        }),
+        new WalletConnectConnector({
+          chains,
+          options: {
+            projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID,
+          },
+        }),
+        new InjectedConnector({
+          chains,
+          options: {
+            name: 'Injected',
+            shimDisconnect: true,
+          },
+        }),
         new DedicatedWalletConnector({
           chains,
           options: {
-            apiKey: "pk_live_D34413A845CE453E",
-            isDarkMode: true,
-            /* Make sure to enable OAuth options from magic dashboard */
+            apiKey: process.env.NEXT_PUBLIC_MAGIC_API_KEY || 'pk_live_3EA01B119E287F11',
             oauthOptions: {
-              providers: ["google", "twitter", "github"],
+              providers: ["google"],
             },
             magicSdkConfiguration: {
               network: {
-                rpcUrl: "https://rpc.ankr.com/eth",
+                rpcUrl: process.env.NEXT_PUBLIC_RPC_URL || 'https://rpc-mainnet.maticvigil.com',
+                chainId: 1,
+              },
+            },
+          },
+        }),
+        new UniversalWalletConnector({
+          chains,
+          options: {
+            apiKey: process.env.NEXT_PUBLIC_MAGIC_API_KEY || 'pk_live_3EA01B119E287F11',
+            magicSdkConfiguration: {
+              network: {
+                rpcUrl: "https://rpc-mainnet.maticvigil.com",
                 chainId: 1,
               },
             },
