@@ -39,7 +39,6 @@ export default function Home() {
             <div className={styles.whale} />
             <div className={styles.squid} />
             <div className={styles.uploader}>
-              <ConnectKitButton />
               <UploaderConnection
                 uploader_url={
                   process.env.UPLOADER_URL ||
