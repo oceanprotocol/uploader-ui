@@ -2,16 +2,14 @@
 import dynamic from 'next/dynamic';
 import {
   ConnectKitProvider,
-  getDefaultConfig,
-  ConnectKitButton
+  getDefaultConfig
 } from 'connectkit'
 
 import { WagmiConfig, createConfig, configureChains } from 'wagmi'
 import { polygon } from 'wagmi/chains'
 import styles from './page.module.css'
 import Layout from '../components/molecules/Layout';
-import { DedicatedWalletConnector, UniversalWalletConnector } from '@magiclabs/wagmi-connector';
-import config from '../../config';
+import { DedicatedWalletConnector } from '@magiclabs/wagmi-connector';
 import { publicProvider } from "wagmi/providers/public";
 import '@oceanprotocol/uploader-ui-lib/dist/index.es.css';
 const UploaderConnection = dynamic(() => import('@oceanprotocol/uploader-ui-lib').then((module) => module.UploaderConnection), { ssr: false });
@@ -21,17 +19,37 @@ export default function Home() {
     [polygon],
     [publicProvider()]
   );
+  const wagmiConfig = createConfig(
+    getDefaultConfig({
+      appName: 'Ocean Uploader UI',
+      infuraId: process.env.INFURA_ID || '',
+      chains: [polygon],
+      walletConnectProjectId: process.env.WALLET_CONNECT_PROJECT_ID || '',
+      autoConnect: true,
+      publicClient,
+      webSocketPublicClient,
+      connectors: [
+        new DedicatedWalletConnector({
+          chains,
+          options: {
+            apiKey: "pk_live_D34413A845CE453E",
+            isDarkMode: true,
+            /* Make sure to enable OAuth options from magic dashboard */
+            oauthOptions: {
+              providers: ["google", "twitter", "github"],
+            },
+            magicSdkConfiguration: {
+              network: {
+                rpcUrl: "https://rpc.ankr.com/eth",
+                chainId: 1,
+              },
+            },
+          },
+        }),
+      ],
+    }) 
+  )
   /*
-  // Universal Wallet integration 
-  const magicLinkConnector = new DedicatedWalletConnector({
-    options: {
-      apiKey: process.env.NEXT_PUBLIC_MAGIC_API_KEY || 'pk_live_3EA01B119E287F11', //required
-      oauthOptions : {
-        providers: ['facebook', 'google', 'twitter'],
-        callbackUrl: 'https://your-callback-url.com', //optional
-      }
-    },
-  })
   const wagmiConfig = createConfig(
     getDefaultConfig({
       appName: 'Ocean Uploader UI',
@@ -41,34 +59,10 @@ export default function Home() {
       walletConnectProjectId: process.env.WALLET_CONNECT_PROJECT_ID || ''
     }) 
   )
-    */
-  const config = createConfig({
-    autoConnect: true,
-    publicClient,
-    webSocketPublicClient,
-    connectors: [
-      new DedicatedWalletConnector({
-        chains,
-        options: {
-          apiKey:  process.env.NEXT_PUBLIC_MAGIC_API_KEY || 'pk_live_3EA01B119E287F11',
-          isDarkMode: true,
-          /* Make sure to enable OAuth options from magic dashboard */
-          oauthOptions: {
-            providers: ["google", "twitter", "github"],
-          },
-          magicSdkConfiguration: {
-            network: {
-              rpcUrl: 'https://rpc-mumbai.maticvigil.com/',
-              chainId: 137,
-            },
-          },
-        },
-      }),
-    ],
-  });
+  */
 
   return (
-    <WagmiConfig config={config}>
+    <WagmiConfig config={wagmiConfig}>
       <ConnectKitProvider>
         <Layout>
           <div className={styles.root}>
@@ -81,7 +75,6 @@ export default function Home() {
             <div className={styles.whale} />
             <div className={styles.squid} />
             <div className={styles.uploader}>
-              <ConnectKitButton />
               <UploaderConnection
                 uploader_url={
                   process.env.UPLOADER_URL ||
