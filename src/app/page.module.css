@@ -28,8 +28,8 @@
 }
 
 .uploader {
-  max-width: var(--break-point--large);
-  width: fit-content;
+  max-width: var(--break-point--small); 
+  width: 100%;
   height: fit-content;
   margin: 0 auto;
 }
@@ -217,6 +217,13 @@
       rgb(var(--background-end-rgb)) 40%
     );
     z-index: 1;
+  }
+
+  .uploader {
+    max-width: var(--break-point--large); 
+    width: 90%;
+    height: fit-content;
+    margin: 0 auto;
   }
 }
 
