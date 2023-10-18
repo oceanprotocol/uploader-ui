@@ -7,7 +7,7 @@ import {
 } from 'connectkit'
 
 import { WagmiConfig, createConfig } from 'wagmi'
-import { polygon } from 'wagmi/chains'
+import { polygon, polygonMumbai } from 'wagmi/chains'
 import styles from './page.module.css'
 import Layout from '../components/molecules/Layout';
 import config from '../../config';
@@ -20,7 +20,7 @@ export default function Home() {
     getDefaultConfig({
       appName: 'Ocean Uploader UI',
       infuraId: process.env.INFURA_ID || '',
-      chains: [polygon],
+      chains: [polygon, polygonMumbai],
       walletConnectProjectId: process.env.WALLET_CONNECT_PROJECT_ID || ''
     })
   )
