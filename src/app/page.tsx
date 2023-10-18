@@ -40,11 +40,11 @@ export default function Home() {
             <div className={styles.uploader}>
               <UploaderConnection
                 uploader_url={
-                  process.env.UPLOADER_URL ||
+                  process.env.NEXT_PUBLIC_UPLOADER_URL ||
                   'https://api.uploader.oceanprotocol.com/'
                 }
                 uploader_account={
-                  process.env.UPLOADER_ACCOUNT ||
+                  process.env.NEXT_PUBLIC_UPLOADER_ACCOUNT ||
                   '0x5F8396D1BfDa5259Ee89196F892E4401BF3B596d'
                 }
               />
