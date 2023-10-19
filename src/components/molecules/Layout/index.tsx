@@ -6,11 +6,9 @@ import styles from './index.module.css';
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <main className={styles.root}>
-      <Web3Provider>
-        <Header />
+      <Header />
         {children}
-        <Footer />
-      </Web3Provider>
+      <Footer />
     </main>
   );
 }
