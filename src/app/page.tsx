@@ -32,9 +32,8 @@ export default function Home() {
           <div className={styles.root}>
             <h1 className={styles.title}>Ocean Uploader</h1>
             <p className={styles.description}>
-              A TypeScript library for interacting with the Ocean Uploader API.
-              It provides a simple interface to call the API endpoints in Ocean
-              uploader for managing file storage uploads, quotes, and more.
+              Your gateway to effortless file uploading.<br />
+              It provides a simple interface for managing file uploads,<br />quotes, and more.
             </p>
             <div className={styles.whale} />
             <div className={styles.squid} />

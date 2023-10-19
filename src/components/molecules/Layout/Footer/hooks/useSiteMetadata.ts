@@ -22,7 +22,7 @@ export default function useSiteMetadata() {
       },
       {
         name: 'Docs',
-        url: 'https://github.com/oceanprotocol/uploader.js#ocean-uploaderjs:~:text=README.md-,Ocean%20Uploader.js,-This%20is%20a',
+        url: 'https://github.com/oceanprotocol/uploader-ui',
       },
       {
         name: 'Discord',
