@@ -24,9 +24,9 @@ const config: ConfigType = {
   magicApiKey:
     process.env.NEXT_PUBLIC_MAGIC_API_KEY || 'pk_live_3EA01B119E287F11',
   githubRepo: 'https://github.com/oceanprotocol/uploader-ui',
-  chainId: parseInt(process.env.NEXT_PUBLIC_CHAIN_ID || '', 10) || 80001,
+  chainId: parseInt(process.env.NEXT_PUBLIC_CHAIN_ID || '', 10) || 137,
   rpcUrl:
-    process.env.NEXT_PUBLIC_RPC_URL || 'https://rpc-mumbai.maticvigil.com/',
+    process.env.NEXT_PUBLIC_RPC_URL || 'https://polygon-rpc.com/',
   oceanNetwork: {
     contract:
       process.env.EXPO_PUBLIC_OCEAN_CONTRACT ||
