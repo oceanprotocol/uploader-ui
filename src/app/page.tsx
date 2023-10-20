@@ -54,21 +54,6 @@ export default function Home() {
             shimDisconnect: true,
           },
         }),
-        new DedicatedWalletConnector({
-          chains,
-          options: {
-            apiKey: process.env.NEXT_PUBLIC_MAGIC_API_KEY || 'pk_live_3EA01B119E287F11',
-            oauthOptions: {
-              providers: ["google"],
-            },
-            magicSdkConfiguration: {
-              network: {
-                rpcUrl: process.env.NEXT_PUBLIC_RPC_URL || 'https://rpc-mainnet.maticvigil.com',
-                chainId: 1,
-              },
-            },
-          },
-        }),
         new UniversalWalletConnector({
           chains,
           options: {
