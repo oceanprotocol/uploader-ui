@@ -17,7 +17,7 @@ const config: ConfigType = {
   UPLOADER_URL: process.env.NEXT_PUBLIC_UPLOADER_URL || 'https://api.uploader.oceanprotocol.com',
   UPLOADER_ACCOUNT:
     process.env.NEXT_PUBLIC_UPLOADER_ACCOUNT ||
-    '0x5F8396D1BfDa5259Ee89196F892E4401BF3B596d',
+    '0x21F2B4d705aC448c9Ff96694Dd9e5901F79f1Ab2',
   INFURA_ID: process.env.NEXT_PUBLIC_INFURA_ID || '',
   WALLET_CONNECT_PROJECT_ID:
     process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID || '',
