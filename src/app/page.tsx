@@ -10,7 +10,6 @@ import { polygon } from 'wagmi/chains'
 import styles from './page.module.css'
 import Layout from '../components/molecules/Layout';
 import '@oceanprotocol/uploader-ui-lib/dist/index.es.css';
-import { connectKitTheme } from '@/utils/walletConnect';
 const UploaderConnection = dynamic(() => import('@oceanprotocol/uploader-ui-lib').then((module) => module.UploaderConnection), { ssr: false });
 
 export default function Home() {
@@ -26,7 +25,7 @@ export default function Home() {
 
   return (
     <WagmiConfig config={wagmiConfig}>
-      <ConnectKitProvider customTheme={connectKitTheme}>
+      <ConnectKitProvider theme='minimal'>
         <Layout>
           <div className={styles.root}>
             <h1 className={styles.title}>Ocean Uploader</h1>
