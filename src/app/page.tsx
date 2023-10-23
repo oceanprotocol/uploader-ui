@@ -2,16 +2,15 @@
 import dynamic from 'next/dynamic';
 import {
   ConnectKitProvider,
-  getDefaultConfig,
-  ConnectKitButton
+  getDefaultConfig
 } from 'connectkit'
 
 import { WagmiConfig, createConfig } from 'wagmi'
 import { polygon } from 'wagmi/chains'
 import styles from './page.module.css'
 import Layout from '../components/molecules/Layout';
-import config from '../../config';
 import '@oceanprotocol/uploader-ui-lib/dist/index.es.css';
+import { connectKitTheme } from '@/utils/walletConnect';
 const UploaderConnection = dynamic(() => import('@oceanprotocol/uploader-ui-lib').then((module) => module.UploaderConnection), { ssr: false });
 
 export default function Home() {
@@ -27,13 +26,14 @@ export default function Home() {
 
   return (
     <WagmiConfig config={wagmiConfig}>
-      <ConnectKitProvider>
+      <ConnectKitProvider customTheme={connectKitTheme}>
         <Layout>
           <div className={styles.root}>
             <h1 className={styles.title}>Ocean Uploader</h1>
             <p className={styles.description}>
-              Your gateway to effortless file uploading.<br />
-              It provides a simple interface for managing file uploads,<br />quotes, and more.
+              A TypeScript library for interacting with the Ocean Uploader API.
+              It provides a simple interface to call the API endpoints in Ocean
+              uploader for managing file storage uploads, quotes, and more.
             </p>
             <div className={styles.whale} />
             <div className={styles.squid} />
