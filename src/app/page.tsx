@@ -19,9 +19,11 @@ export default function Home() {
   const wagmiConfig = createConfig(
     getDefaultConfig({
       appName: 'Ocean Uploader UI',
-      infuraId: process.env.INFURA_ID || '',
-      chains: [polygon, polygonMumbai],
-      walletConnectProjectId: process.env.WALLET_CONNECT_PROJECT_ID || ''
+      infuraId: process.env.NEXT_PUBLIC_INFURA_ID || '',
+      chains: process.env.NEXT_PUBLIC_ENABLE_DEVELOPMENT
+        ? [polygon, polygonMumbai]
+        : [polygon],
+      walletConnectProjectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID || ''
     })
   )
 
