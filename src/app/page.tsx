@@ -15,7 +15,7 @@ import '@oceanprotocol/uploader-ui-lib/dist/index.es.css';
 const UploaderConnection = dynamic(() => import('@oceanprotocol/uploader-ui-lib').then((module) => module.UploaderConnection), { ssr: false });
 
 export default function Home() {
-
+ 
   const wagmiConfig = createConfig(
     getDefaultConfig({
       appName: 'Ocean Uploader UI',
