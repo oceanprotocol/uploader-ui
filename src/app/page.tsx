@@ -7,7 +7,7 @@ import {
 } from 'connectkit'
 
 import { WagmiConfig, createConfig } from 'wagmi'
-import { polygon } from 'wagmi/chains'
+import { polygon, polygonMumbai } from 'wagmi/chains'
 import styles from './page.module.css'
 import Layout from '../components/molecules/Layout';
 import config from '../../config';
@@ -15,13 +15,15 @@ import '@oceanprotocol/uploader-ui-lib/dist/index.es.css';
 const UploaderConnection = dynamic(() => import('@oceanprotocol/uploader-ui-lib').then((module) => module.UploaderConnection), { ssr: false });
 
 export default function Home() {
-
+ 
   const wagmiConfig = createConfig(
     getDefaultConfig({
       appName: 'Ocean Uploader UI',
-      infuraId: process.env.INFURA_ID || '',
-      chains: [polygon],
-      walletConnectProjectId: process.env.WALLET_CONNECT_PROJECT_ID || ''
+      infuraId: process.env.NEXT_PUBLIC_INFURA_ID || '',
+      chains: process.env.NEXT_PUBLIC_ENABLE_DEVELOPMENT
+        ? [polygon, polygonMumbai]
+        : [polygon],
+      walletConnectProjectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID || ''
     })
   )
 
