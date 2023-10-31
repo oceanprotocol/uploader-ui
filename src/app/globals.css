@@ -184,7 +184,5 @@ div[class^="NetworkItem-module_radio"] input[type="radio"] {
 }
 
 @media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+  
 }
