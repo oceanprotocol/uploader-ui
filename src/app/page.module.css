@@ -28,7 +28,7 @@
 }
 
 .uploader {
-  max-width: var(--break-point--small); 
+  max-width: var(--break-point--large); 
   width: 100%;
   height: fit-content;
   margin: 0 auto;
